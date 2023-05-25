@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { Announcement } from './announcement';
+import { category } from './category';
 
 @Component({
   selector: 'app-root',
@@ -27,5 +28,24 @@ message: 'sunt bun',
 author: 'lilian'
   },
 ];
+
+
+categorySelected : category;
+
+selectedCategory!: EventEmitter<category>;
+
+  category!: category;
+  filteredAnnouncement!: Announcement[];
+  
+  categoryReceived(cat: category) {
+    this.categorySelected = cat;
+    if (!this.category) this.filteredAnnouncement = this.announcements;
+    else
+      this.filteredAnnouncement = this.announcements.filter(
+        (announ) => announ.category.name === this.category.name
+      );
+  }
+
 }
+
 
