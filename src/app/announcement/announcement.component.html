@@ -1,5 +1,7 @@
-<div class="announcement-container">
-<app-announcement *ngFor="let announcement of announcements">
-    [message] = announcement.message
-</app-announcement>
-</div>
+<div class="app-container">
+    <div *ngFor="let announcement of announcements" class = "announcement-container">
+      <div class = "title">{{ announcement.title }} </div>
+      <div class = "message">{{ announcement.message }} </div>
+      <div class = "author">{{ announcement.author }} </div>
+    </div>
+  </div>

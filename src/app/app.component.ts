@@ -3,12 +3,13 @@ import { Announcement } from './announcement';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './announcement/announcement.component.html',
+  templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
 
 export class AppComponent {
   
+  title : string = "notifications-app"
   announcements: Announcement[] =[ 
   {
     title: 'New Announcement',

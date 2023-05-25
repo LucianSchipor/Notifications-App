@@ -5,14 +5,16 @@
     align-items: center;
     gap:20px;
     height:300px;
-    border: 2px solid #FFCACA;
+    border: 2px solid #989618;
     border-radius: 25px;
     padding: 30px;
+    background-color: lightgray;
     
     .title {
       font-size: 20px;
       font-weight: 700;
     }
+
     .message {
       text-overflow: ellipsis;
       white-space: nowrap;

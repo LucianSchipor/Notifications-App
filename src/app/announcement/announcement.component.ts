@@ -7,8 +7,7 @@ import { Announcement } from '../announcement';
   styleUrls: ['./announcement.component.scss']
 })
 export class AnnouncementComponent {
- @Input() announcements : Announcement[]
-
-
+ @Input()
+  announcements!: Announcement[];
 }
 
