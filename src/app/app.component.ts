@@ -15,22 +15,25 @@ export class AppComponent {
   {
     title: 'New Announcement',
     message: 'This is a sample announcement',
-    author: 'John Doe'
+    author: 'John Doe',
+    imageURL: "none"
   },
   {
     title: 'salut2',
     message: 'salut2', 
-    author: 'Lucian'
+    author: 'Lucian',
+    imageURL: "none"
   },
   {
 title: 'anunt3',
 message: 'sunt bun',
-author: 'lilian'
+author: 'lilian',
+imageURL: "none"
   },
 ];
 
 
-categorySelected : category;
+categorySelected : category | undefined;
 
 selectedCategory!: EventEmitter<category>;
 
