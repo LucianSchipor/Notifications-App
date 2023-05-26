@@ -1,17 +1,26 @@
-<form (ngSubmit)="submitForm()">
-    <mat-form-field>
+<form (ngSubmit)="submitForm()" class = "add-form">
+    <mat-form-field class = "example-full-width">
         <mat-label> Title </mat-label>
         <input matInput placeholder="Title" [(ngModel)]="announcement.title" name="Title" required> 
-        <mat-label> Author </mat-label>        
-        <input matInput placeholder="Author" [(ngModel)]="announcement.author" name="Author" required>
-        <mat-label>  imageURL </mat-label>
-        <input matInput placeholder="Author" [(ngModel)]="announcement.imageURL" name="Image-URL" required>
-        <mat-label>
-            Leave a message
-        </mat-label>
-        <textarea matInput placeholder="..."></textarea>
     </mat-form-field>
-    <button type="submit">Submit</button>
+    <mat-form-field class = "example-full-width">
+        <mat-label> Title </mat-label>
+        <input matInput placeholder="Title" [(ngModel)]="announcement.title" name="Title" required> 
+    </mat-form-field>
+    <mat-form-field class = "example-full-width">
+        <mat-label> Title </mat-label>
+        <input matInput placeholder="Title" [(ngModel)]="announcement.title" name="Title" required> 
+    </mat-form-field>
+    <mat-form-field class = "example-full-width">
+        <mat-label> Title </mat-label>
+        <input matInput placeholder="Title" [(ngModel)]="announcement.title" name="Title" required> 
+    </mat-form-field>
+    <mat-form-field class = "example-full-width">
+        <mat-label> Title </mat-label>
+        <input matInput placeholder="Title" [(ngModel)]="announcement.title" name="Title" required> 
+    </mat-form-field>
 </form>
-
-<button mat-raised-button color="warn" routerLink="/home">Cancel</button>
+<div class="btn">
+    <button class ="btn" mat-raised-button color="accent" routerLink="/home">Submit</button>
+    <button class ="btn" mat-raised-button color="warn" routerLink="/home">Cancel</button>
+</div>

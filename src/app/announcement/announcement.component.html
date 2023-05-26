@@ -4,16 +4,13 @@
   <p class="author">{{ author }}</p>
   <img src="imageUrl" alt="nu merge" />
   <div>
-    <button mat-button color="accent" (click)="deleteAnnouncement()">
-      Delete
-    </button>
     <button
-      [routerLink]="'/edit'"
-      mat-button
-      color="accent"
-      (click)="editAnnouncement()"
-    >
+      [routerLink]="'/edit'" mat-raised-button color="primary" (click)="editAnnouncement()">
       Edit
     </button>
+    <button mat-raised-button color="accent" (click)="deleteAnnouncement()">
+      Delete
+    </button>
+    
   </div>
 </div>
