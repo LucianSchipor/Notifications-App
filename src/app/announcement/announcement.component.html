@@ -1,8 +1,19 @@
-<div class="app-container">
-    <div *ngFor="let announcement of announcements" class = "announcement-container">
-      <div class = "title">{{ announcement.title }} </div>
-      <div class = "message">{{ announcement.message }} </div>
-      <div class = "author">{{ announcement.author }} </div>
-      <div class = "imageURL">{{ announcement.imageURL }} </div>
-    </div>
+<div class="announcement-container">
+  <p class="message">{{ message }}</p>
+  <p class="title">{{ title }}</p>
+  <p class="author">{{ author }}</p>
+  <img src="imageUrl" alt="nu merge" />
+  <div>
+    <button mat-button color="accent" (click)="deleteAnnouncement()">
+      Delete
+    </button>
+    <button
+      [routerLink]="'/edit'"
+      mat-button
+      color="accent"
+      (click)="editAnnouncement()"
+    >
+      Edit
+    </button>
   </div>
+</div>

@@ -1,0 +1,11 @@
+<app-categories (selectedCategory)="categoryReceived($event)"></app-categories>
+<div class="app-container">
+  <app-announcement
+    class="announcements"
+    *ngFor="let announc of filteredAnnouncement"
+    [message]="announc.message"
+    [title]="announc.title"
+    [author]="announc.author"
+  ></app-announcement>
+  <button [routerLink]="'/add'" mat-button color="accent">Add</button>
+</div>

@@ -1,6 +1,10 @@
-<div class = "categories-container">
-    <button mat-raised-button color="primary" >Course</button>
-    <button mat-raised-button color="primary" >General</button>
-    <button mat-raised-button color="primary" >Laboratory</button>
-    <button mat-raised-button >Reset</button>
+<div class="buttns">
+  <div class="buttons" *ngFor="let category of categoriesList; let i = index">
+    <button mat-raised-button color="accent" (click)="selectCategory(i)">
+      {{ category.name }}
+    </button>
+  </div>
+  <button mat-raised-button colo="accent" (click)="selectCategory(0)">
+    Reset
+  </button>
 </div>

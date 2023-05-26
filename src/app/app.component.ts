@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { Announcement } from './announcement';
-import { category } from './category';
+import { AppRoutingModule } from './app-routing.module';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -9,45 +9,8 @@ import { category } from './category';
 })
 
 export class AppComponent {
-  
-  title : string = "notifications-app"
-  announcements: Announcement[] =[ 
-  {
-    title: 'New Announcement',
-    message: 'This is a sample announcement',
-    author: 'John Doe',
-    imageURL: "none"
-  },
-  {
-    title: 'salut2',
-    message: 'salut2', 
-    author: 'Lucian',
-    imageURL: "none"
-  },
-  {
-title: 'anunt3',
-message: 'sunt bun',
-author: 'lilian',
-imageURL: "none"
-  },
-];
 
-
-categorySelected : category | undefined;
-
-selectedCategory!: EventEmitter<category>;
-
-  category!: category;
-  filteredAnnouncement!: Announcement[];
-  
-  categoryReceived(cat: category) {
-    this.categorySelected = cat;
-    if (!this.category) this.filteredAnnouncement = this.announcements;
-    else
-      this.filteredAnnouncement = this.announcements.filter(
-        (announ) => announ.category.name === this.category.name
-      );
-  }
+  title : string = 'notifications-app'
 
 }
 

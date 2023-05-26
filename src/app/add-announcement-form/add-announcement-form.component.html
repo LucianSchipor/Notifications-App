@@ -1,0 +1,17 @@
+<form (ngSubmit)="submitForm()">
+    <mat-form-field>
+        <mat-label> Title </mat-label>
+        <input matInput placeholder="Title" [(ngModel)]="announcement.title" name="Title" required> 
+        <mat-label> Author </mat-label>        
+        <input matInput placeholder="Author" [(ngModel)]="announcement.author" name="Author" required>
+        <mat-label>  imageURL </mat-label>
+        <input matInput placeholder="Author" [(ngModel)]="announcement.imageURL" name="Image-URL" required>
+        <mat-label>
+            Leave a message
+        </mat-label>
+        <textarea matInput placeholder="..."></textarea>
+    </mat-form-field>
+    <button type="submit">Submit</button>
+</form>
+
+<button mat-raised-button color="warn" routerLink="/home">Cancel</button>

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Component, EventEmitter, Output } from '@angular/core';
 import { category } from '../category';
 import {MatIconModule} from '@angular/material/icon';
+import { MatOptionSelectionChange } from '@angular/material/core';
 
 @Component({
   selector: 'app-categories',
@@ -13,16 +14,21 @@ import {MatIconModule} from '@angular/material/icon';
 
 export class CategoriesComponent {
   @Output() selectedCategory = new EventEmitter<category>();
+  selectedCategory1: category | undefined;
 
   categoriesList: category[] = [
 {
-name: 'Course'
+name: 'Course',
+id: 1,
 },
 {
-  name: 'General'
+  name: 'General',
+  id: 2,
+
 },
 {
-name: 'Laboratory'
+name: 'Laboratory',
+id: 3,
 }
 ];
 
