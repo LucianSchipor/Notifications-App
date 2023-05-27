@@ -42,7 +42,7 @@ import { CategoriesComponent } from '../categories/categories.component';
         author: this.author,
         imageURL: this.imageURL,
         id: ' ',
-        category: this.categories[parseInt(this.selectedCategory) - 1],
+        categoryId: ' ',
       };
       this.announcementService.replaceAnnouncement(announcement);
     }

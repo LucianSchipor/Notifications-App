@@ -39,11 +39,12 @@ categorySelected : category = {
     });
   }
   categoryReceived(cat: category) {
-    this.categorySelected = cat;
-    if (!this.categorySelected) this.filteredAnnouncement = this.announcements;
-    else
-      this.filteredAnnouncement = this.announcements.filter(
-        (announ) => announ.category.name === this.categorySelected.name
-      );
-  }
+    this.announcementService.getAnnouncements().subscribe(
+      (announcements: Announcement[]) => {
+        this.filteredAnnouncement = announcements;
+      },
+      (error: any) => {
+        console.error('A apărut o eroare la obținerea anunțurilor:', error);
+      }
+    );  }
 }

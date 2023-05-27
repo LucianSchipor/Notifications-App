@@ -28,6 +28,7 @@ export class AnnouncementComponent {
     imageURL: 'new',
     author: 'lucian',
     id: '0',
+    categoryId: '0',
   };
 
    addAnnouncement() {
@@ -39,6 +40,7 @@ export class AnnouncementComponent {
   }
 
   deleteAnnouncement() {
+    this.announcementService.findAnnouncementForDelete(this.id);
   }
 }
 

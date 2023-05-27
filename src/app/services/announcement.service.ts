@@ -1,41 +1,26 @@
 import { Injectable } from '@angular/core';
 import { Announcement } from '../announcement';
 import { Observable, Subject, of } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class AnnouncementService {
+  baseURL="https://localhost:7066";
+  readonly httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type':  'application/json',
+    })
+  };
+
   subjectAnnouncement: Subject<Announcement[]> = new Subject<Announcement[]>();
   refreshFilteredAnnouncements: Subject<Announcement> =
     new Subject<Announcement>();
 
   private announcement: Announcement[] = [
-    {
-      imageURL: '',
-      id: '1',
-      message: 'General',
-      title: 'BRTA',
-      author: 'Theo',
-      category: { id: '2', name: 'General' },
-    },
-    {
-      imageURL: '',
-      id: '2',
-      message: 'Course',
-      title: 'MVP',
-      author: 'Theut',
-      category: { id: '1', name: 'Course' },
-    },
-    {
-      imageURL: '',
-      id: '3',
-      message: 'Laboratory',
-      title: 'MVP',
-      author: 'Theutu',
-      category: { id: '3', name: 'Laboratory' },
-    },
   ];
   searchedAnnouncement: Announcement[] = [
     {
@@ -44,17 +29,19 @@ export class AnnouncementService {
       id: 'new',
       author: 'new',
       imageURL: 'new',
+      categoryId: '0',
     }
   ];
   size: number = this.announcement.length;
-  constructor() {}
+  constructor(private httpClient: HttpClient) {}
 
   serviceCall() {
     console.log('Service was called');
   }
   
   getAnnouncements() : Observable<Announcement[]> {
-    return of(this.announcement);
+  const url = `${this.baseURL}/Announcement/get-announcements`;
+  return this.httpClient.get<Announcement[]>(url, this.httpOptions);
   }
 
   addAnnouncement(announcement: Announcement) {
@@ -84,9 +71,9 @@ export class AnnouncementService {
     const foundIndex = this.announcement.findIndex(
       (x) => x.id == this.searchedAnnouncement[0].id
     );
+    this.searchedAnnouncement.splice(foundIndex, 1);
     this.refreshFilteredAnnouncements.next(this.announcement[foundIndex]);
     this.announcement.splice(foundIndex, 1);
-    this.searchedAnnouncement.splice(0);
     this.subjectAnnouncement.next(this.announcement);
   }
 }

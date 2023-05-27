@@ -15,6 +15,7 @@ import { HomeComponent } from './home/home.component';
 import { RouterModule } from '@angular/router';
 import {MatInputModule} from '@angular/material/input';
 import { EditAnnouncementComponent } from './edit-announcement/edit-announcement.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { EditAnnouncementComponent } from './edit-announcement/edit-announcement
     MatSelectModule,
     AppRoutingModule,
     RouterModule,
-    MatInputModule
+    MatInputModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -13,11 +13,9 @@ export class AddAnnouncementFormComponent {
   message: 'new',
   author: 'new',
   imageURL: 'new',
-  id: '0'
+  id: '0',
+  categoryId: '0',
 }
-
-
-
 
 submitForm() {
   // Logică de gestionare a trimiterii formularului
