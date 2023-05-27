@@ -1,0 +1,64 @@
+<form>
+    <mat-form-field class="full-width">
+      <mat-label>Title</mat-label>
+      <input
+        matInput
+        placeholder="Title"
+        [(ngModel)]="title"
+        name="title"
+        required
+      />
+    </mat-form-field>
+  
+    <mat-form-field class="full-width">
+      <mat-label>Author</mat-label>
+      <input
+        matInput
+        placeholder="Author"
+        [(ngModel)]="author"
+        name="author"
+        required
+      />
+    </mat-form-field>
+  
+    <mat-form-field class="full-width">
+      <mat-label>imageURL</mat-label>
+      <input
+        matInput
+        placeholder="imageURL"
+        [(ngModel)]="imageURL"
+        name="imageURL"
+        required
+      />
+    </mat-form-field>
+  
+    <mat-form-field class= "full-width">
+      <mat-label>Leave a message</mat-label>
+      <textarea
+        matInput
+        placeholder="textarea"
+        [(ngModel)]="textarea"
+        name="textarea"
+      ></textarea>
+    </mat-form-field>
+  
+    <mat-form-field appearance="fill">
+      <mat-label>Select a category</mat-label>
+      <mat-select [(ngModel)]="selectedCategory" name="category">
+        <mat-option *ngFor="let category of categories">
+          {{ category.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  
+    <button
+      [routerLink]="''"
+      mat-button
+      color="accent"
+      (click)="editAnnouncement()"
+    >
+      Submit
+    </button>
+    <button [routerLink]="''" mat-button color="accent">Cancel</button>
+  </form>
+  

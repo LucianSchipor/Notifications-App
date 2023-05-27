@@ -10,49 +10,35 @@ import { AnnouncementService } from '../services/announcement.service';
 })
 export class HomeComponent {
 
-  title : string = "notifications-app"
-  announcements: Announcement[] =[ 
-  {
-    title: 'New Announcement',
-    message: 'This is a sample announcement',
-    author: 'John Doe',
-    imageURL: "none",
-    category: { id: 1, name: 'General'},
+  announcements!: Announcement[];
 
-  },
-  {
-    title: 'salut2',
-    message: 'salut2', 
-    author: 'Lucian',
-    imageURL: "none",
-    category: { id: 1, name: 'General' },
-
-  },
-  {
-    title: 'anunt3',
-    message: 'sunt bun',
-    author: 'lilian',
-    imageURL: "none",
-    category: { id: 1, name: 'General' },
-  },
-];
-
+  filteredAnnouncement!: Announcement[];
+  selectedCategory!: EventEmitter<category>;
 
 categorySelected : category = {
   name: 'category selected',
-  id: 0,
+  id: '0',
 };
-selectedCategory!: EventEmitter<category>;
 
-  filteredAnnouncement!: Announcement[];
   
   constructor(private announcementService: AnnouncementService) {}
 
   ngOnInit(): void {
     this.announcementService.serviceCall();
-    };
-
-    categoryReceived(cat: category) {
+    this.announcementService.getAnnouncements().subscribe((data) => {
+      this.announcements = data;
+    });
+    this.announcementService.subjectAnnouncement.subscribe((data) => {
+      this.announcements = data;
+    });
+    this.announcementService.refreshFilteredAnnouncements.subscribe((data) => {
+      const foundIndex = this.filteredAnnouncement.findIndex(
+        (x) => x.id == data.id
+      );
+      this.filteredAnnouncement.splice(foundIndex, 1);
+    });
+  }
+  categoryReceived(cat: category) {
     this.categorySelected = cat;
     if (!this.categorySelected) this.filteredAnnouncement = this.announcements;
     else

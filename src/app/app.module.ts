@@ -14,6 +14,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './home/home.component';
 import { RouterModule } from '@angular/router';
 import {MatInputModule} from '@angular/material/input';
+import { EditAnnouncementComponent } from './edit-announcement/edit-announcement.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import {MatInputModule} from '@angular/material/input';
     CategoriesComponent,
     AuthorPipe,
     AddAnnouncementFormComponent,
-    HomeComponent
+    HomeComponent,
+    EditAnnouncementComponent
   ],
   imports: [
     BrowserModule,

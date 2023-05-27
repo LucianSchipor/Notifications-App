@@ -12,7 +12,8 @@ export class AddAnnouncementFormComponent {
   title: 'new',
   message: 'new',
   author: 'new',
-  imageURL: 'new'
+  imageURL: 'new',
+  id: '0'
 }
 
 

@@ -10,25 +10,24 @@ import { MatOptionSelectionChange } from '@angular/material/core';
   styleUrls: ['./categories.component.scss']
 })
 
-
-
 export class CategoriesComponent {
   @Output() selectedCategory = new EventEmitter<category>();
   selectedCategory1: category | undefined;
 
   categoriesList: category[] = [
 {
-name: 'Course',
-id: 1,
+  id: '0',
+  name: 'Course',
 },
-{
-  name: 'General',
-  id: 2,
 
-},
 {
-name: 'Laboratory',
-id: 3,
+  id: '1',
+  name: 'General',
+},
+
+{
+  id: '2',
+  name: 'Laboratory',
 }
 ];
 
