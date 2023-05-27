@@ -2,10 +2,11 @@
   <p class="message">{{ message }}</p>
   <p class="title">{{ title }}</p>
   <p class="author">{{ author }}</p>
-  <img src="imageUrl" alt="nu merge" />
   <div>
     <button
-      [routerLink]="'/edit'" mat-raised-button color="primary" (click)="editAnnouncement()">
+      [routerLink]="'/edit'" 
+      mat-raised-button color="primary"
+      (click)="editAnnouncement()">
       Edit
     </button>
     <button mat-raised-button color="accent" (click)="deleteAnnouncement()">

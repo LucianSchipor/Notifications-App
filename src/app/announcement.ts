@@ -6,6 +6,7 @@ export interface Announcement {
     author: string;
     category?: category;
     imageURL : string;
+    id : string;
 }
 
 
