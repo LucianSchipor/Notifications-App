@@ -17,7 +17,7 @@ import { CategoriesComponent } from '../categories/categories.component';
     imageURL!: string;
     textarea!: string;
     selectedCategory!: string;
-    announcement: Announcement;
+    announcement!: Announcement;
     categories: category[] = [
       {
         id: '1',
