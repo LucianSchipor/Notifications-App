@@ -9,12 +9,13 @@ import { MatButton } from '@angular/material/button';
   templateUrl: './announcement.component.html',
   styleUrls: ['./announcement.component.scss']
 })
-export class AnnouncementComponent {
-  @Input() message: string | undefined;
-  @Input() title: string | undefined;
-  @Input() author: string | undefined;
-  @Input() imageURL: string | undefined;
-  @Input() id: string = '0';
+export class AnnouncementComponent{
+  @Input() message: string;
+  @Input() title: string;
+  @Input() author: string;
+  @Input() imageURL: string;
+  @Input() categoryId: string;
+  @Input() id: string;
 
   category : category | undefined;
   constructor(
