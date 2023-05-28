@@ -36,7 +36,11 @@ import { CategoriesComponent } from '../categories/categories.component';
     constructor(private announcementService: AnnouncementService) {}
   
     editAnnouncement() {
-      console.log(this.announcementService.searchedAnnouncement[0].title);
+      console.log(this.announcementService.searchedAnnouncement[0].id + "a fost editat.");
+      console.log(this.announcementService.searchedAnnouncement[0].title + "a fost editat.");
+      console.log(this.announcementService.searchedAnnouncement[0].message + "a fost editat.");
+      console.log(this.announcementService.searchedAnnouncement[0].author + "a fost editat.");
+
       const announcement: Announcement = {
         title: this.title,
         message: this.textarea,
@@ -45,7 +49,13 @@ import { CategoriesComponent } from '../categories/categories.component';
         id: this.announcementService.searchedAnnouncement[0].id,
         categoryId: this.announcementService.searchedAnnouncement[0].categoryId,
       };
-      this.announcementService.updateAnnouncement(announcement);      
+      
+      this.announcementService.updateAnnouncement(announcement);     
+
+      console.log(this.announcementService.searchedAnnouncement[0].id + "a fost editat.");
+      console.log(this.announcementService.searchedAnnouncement[0].title + "a fost editat.");
+      console.log(this.announcementService.searchedAnnouncement[0].message + "a fost editat.");
+      console.log(this.announcementService.searchedAnnouncement[0].author + "a fost editat.");
     }
   }
   
