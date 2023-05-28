@@ -10,12 +10,12 @@ import { MatButton } from '@angular/material/button';
   styleUrls: ['./announcement.component.scss']
 })
 export class AnnouncementComponent{
-  @Input() message: string;
-  @Input() title: string;
-  @Input() author: string;
-  @Input() imageURL: string;
-  @Input() categoryId: string;
-  @Input() id: string;
+  @Input() message: string | undefined;
+  @Input() title: string | undefined;
+  @Input() author: string | undefined;
+  @Input() imageURL: string | undefined;
+  @Input() categoryId: string | undefined;
+  @Input() id: string | undefined;
 
   category : category | undefined;
   constructor(
@@ -37,6 +37,7 @@ export class AnnouncementComponent{
   }
 
   editAnnouncement() {
+    console.log(this.id);
     this.announcementService.findAnnouncementForEdit(this.id);
   }
 

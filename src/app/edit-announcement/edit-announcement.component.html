@@ -1,4 +1,4 @@
-<form (ngSubmit)= "editAnnouncement()">
+<form (ngSubmit)="editAnnouncement()">
     <mat-form-field class="full-width">
       <mat-label>Title</mat-label>
       <input
@@ -52,13 +52,11 @@
     </mat-form-field>
   
     <button
-      [routerLink]="''"
       mat-button
       color="accent"
-      (click)="editAnnouncement()"
-    >
-      Submit
-    </button>
-    <button [routerLink]="''" mat-button color="accent">Cancel</button>
+      type="submit">Submit
+  </button>
   </form>
+  <button [routerLink]="''" mat-button color="accent">Cancel</button>
+
   

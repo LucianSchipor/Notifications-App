@@ -21,7 +21,6 @@ export class AnnouncementService {
     new Subject<Announcement>();
 
   announcement: Announcement[] = [];
-  
   searchedAnnouncement: Announcement[] = [
     {
       title: 'new',
@@ -80,10 +79,18 @@ export class AnnouncementService {
 
   }
 
-  updateAnnouncement(announcement: Announcement): Observable<any> {
-    const url = `${this.baseURL}/update-announcement`;
+  updateAnnouncement(announcement: Announcement): void {
+    const url = `${this.baseURL}/Announcement/update-announcement`;
     console.log("Update anno apelat;");
-    return this.httpClient.put(url, announcement);
+
+    this.httpClient.put(url, announcement, this.httpOptions).subscribe(
+      () => {
+        console.log("Anunțul a fost actualizat cu succes.");
+      },
+      (error) => {
+        console.error("Eroare la actualizarea anunțului:", error);
+      }
+    );
   }
 }
 
