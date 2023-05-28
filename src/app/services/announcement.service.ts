@@ -44,8 +44,17 @@ export class AnnouncementService {
   }
 
   addAnnouncement(announcement: Announcement) {
-    this.announcement.push(announcement);
-    this.size++;
+    const url = `${this.baseURL}/Announcement/create-announcement`;
+    console.log("Create anno apelat;");
+
+    this.httpClient.post(url, announcement, this.httpOptions).subscribe(
+      () => {
+        console.log("Anunțul a fost adaugat cu succes.");
+      },
+      (error) => {
+        console.error("Eroare la adaugarea anunțului:", error);
+      }
+    );
   }
 
   findAnnouncementForEdit(id: string): void {

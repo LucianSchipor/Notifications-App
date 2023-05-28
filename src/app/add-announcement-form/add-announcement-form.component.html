@@ -1,26 +1,32 @@
 <form (ngSubmit)="submitForm()" class = "add-form">
     <mat-form-field class = "example-full-width">
         <mat-label> Title </mat-label>
-        <input matInput placeholder="Title" [(ngModel)]="announcement.title" name="Title" required> 
+        <input matInput placeholder="Title" [(ngModel)]="title" name="Title" required> 
     </mat-form-field>
     <mat-form-field class = "example-full-width">
-        <mat-label> Title </mat-label>
-        <input matInput placeholder="Title" [(ngModel)]="announcement.title" name="Title" required> 
+        <mat-label> Message </mat-label>
+        <input matInput placeholder="Message" [(ngModel)]="textarea" name="Message" required> 
     </mat-form-field>
     <mat-form-field class = "example-full-width">
-        <mat-label> Title </mat-label>
-        <input matInput placeholder="Title" [(ngModel)]="announcement.title" name="Title" required> 
+        <mat-label> Author </mat-label>
+        <input matInput placeholder="Author" [(ngModel)]="author" name="Author" required> 
     </mat-form-field>
     <mat-form-field class = "example-full-width">
-        <mat-label> Title </mat-label>
-        <input matInput placeholder="Title" [(ngModel)]="announcement.title" name="Title" required> 
+        <mat-label> ImageURL </mat-label>
+        <input matInput placeholder="Image-URL" [(ngModel)]="imageURL" name="Image-URL" required> 
     </mat-form-field>
-    <mat-form-field class = "example-full-width">
-        <mat-label> Title </mat-label>
-        <input matInput placeholder="Title" [(ngModel)]="announcement.title" name="Title" required> 
-    </mat-form-field>
+
+    
+    <mat-form-field class="example-full-width" >
+        <mat-label>Select a category</mat-label>
+        <mat-select [(ngModel)]="selectedCateg" name="category" >
+          <mat-option *ngFor="let category of categories">
+            {{ category.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <button mat-raised-button color="accent" (click)="submitForm()" type="submit">Submit</button>
+    <button mat-raised-button color="warn" routerLink="/home">Cancel</button>
 </form>
-<div class="btn">
-    <button class ="btn" mat-raised-button color="accent" routerLink="/home">Submit</button>
-    <button class ="btn" mat-raised-button color="warn" routerLink="/home">Cancel</button>
-</div>
+
