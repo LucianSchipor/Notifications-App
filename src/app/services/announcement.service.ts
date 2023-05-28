@@ -20,8 +20,8 @@ export class AnnouncementService {
   refreshFilteredAnnouncements: Subject<Announcement> =
     new Subject<Announcement>();
 
-  private announcement: Announcement[] = [
-  ];
+  announcement: Announcement[] = [];
+  
   searchedAnnouncement: Announcement[] = [
     {
       title: 'new',
@@ -51,9 +51,10 @@ export class AnnouncementService {
 
   findAnnouncementForEdit(id: string): void {
     this.searchedAnnouncement = this.announcement.filter(
-      (announ) => announ.id === id
+      (announ) => announ.id == id
     );
   }
+
   replaceAnnouncement(announcement: Announcement) {
     announcement.id = this.searchedAnnouncement[0].id;
 
@@ -63,6 +64,7 @@ export class AnnouncementService {
     this.announcement[foundIndex] = announcement;
     this.searchedAnnouncement.splice(0);
     this.subjectAnnouncement.next(this.announcement);
+    this.updateAnnouncement(announcement);
   }
   findAnnouncementForDelete(id: string) {
     this.searchedAnnouncement = this.announcement.filter(
@@ -75,6 +77,13 @@ export class AnnouncementService {
     this.refreshFilteredAnnouncements.next(this.announcement[foundIndex]);
     this.announcement.splice(foundIndex, 1);
     this.subjectAnnouncement.next(this.announcement);
+
+  }
+
+  updateAnnouncement(announcement: Announcement): Observable<any> {
+    const url = `${this.baseURL}/update-announcement`;
+    console.log("Update anno apelat;");
+    return this.httpClient.put(url, announcement);
   }
 }
 

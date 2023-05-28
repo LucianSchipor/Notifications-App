@@ -36,15 +36,16 @@ import { CategoriesComponent } from '../categories/categories.component';
     constructor(private announcementService: AnnouncementService) {}
   
     editAnnouncement() {
+      console.log(this.announcementService.searchedAnnouncement[0].title);
       const announcement: Announcement = {
         title: this.title,
         message: this.textarea,
         author: this.author,
         imageURL: this.imageURL,
-        id: ' ',
-        categoryId: ' ',
+        id: this.announcementService.searchedAnnouncement[0].id,
+        categoryId: this.announcementService.searchedAnnouncement[0].categoryId,
       };
-      this.announcementService.replaceAnnouncement(announcement);
+      this.announcementService.updateAnnouncement(announcement);      
     }
   }
   

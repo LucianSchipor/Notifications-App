@@ -38,13 +38,17 @@ categorySelected : category = {
       this.filteredAnnouncement.splice(foundIndex, 1);
     });
   }
+  
   categoryReceived(cat: category) {
     this.announcementService.getAnnouncements().subscribe(
       (announcements: Announcement[]) => {
         this.filteredAnnouncement = announcements;
+        this.announcementService.announcement = this.filteredAnnouncement;
+        console.log(this.filteredAnnouncement)
       },
       (error: any) => {
         console.error('A apărut o eroare la obținerea anunțurilor:', error);
       }
-    );  }
+    );  
+  }
 }
