@@ -16,7 +16,7 @@ import { CategoriesComponent } from '../categories/categories.component';
     author!: string;
     imageURL!: string;
     textarea!: string;
-    selectedCategory: string = ' ';
+    selectedCategory!: string;
     announcement: Announcement;
     categories: category[] = [
       {
@@ -33,14 +33,15 @@ import { CategoriesComponent } from '../categories/categories.component';
       },
     ];
   
-    constructor(private announcementService: AnnouncementService) {}
+    constructor(private announcementService: AnnouncementService) {
+
+      this.title = this.announcementService.searchedAnnouncement[0].title;
+      this.author = this.announcementService.searchedAnnouncement[0].author;
+      this.textarea  = this.announcementService.searchedAnnouncement[0].message;
+      this.imageURL = this.announcementService.searchedAnnouncement[0].imageURL;
+    }
   
     editAnnouncement() {
-      console.log(this.announcementService.searchedAnnouncement[0].id + "a fost editat.");
-      console.log(this.announcementService.searchedAnnouncement[0].title + "a fost editat.");
-      console.log(this.announcementService.searchedAnnouncement[0].message + "a fost editat.");
-      console.log(this.announcementService.searchedAnnouncement[0].author + "a fost editat.");
-
       const announcement: Announcement = {
         title: this.title,
         message: this.textarea,
@@ -49,7 +50,7 @@ import { CategoriesComponent } from '../categories/categories.component';
         id: this.announcementService.searchedAnnouncement[0].id,
         categoryId: this.announcementService.searchedAnnouncement[0].categoryId,
       };
-      
+
       this.announcementService.updateAnnouncement(announcement);     
 
       console.log(this.announcementService.searchedAnnouncement[0].id + "a fost editat.");

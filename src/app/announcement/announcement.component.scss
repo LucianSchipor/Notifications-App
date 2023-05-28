@@ -11,6 +11,7 @@
     padding: 30px;
     background-color: rgb(114, 172, 210);
     width: 200px;
+    
     .title {
       font-size: 20px;
       font-weight: 700;
@@ -26,6 +27,9 @@
     .author {
       align-self: flex-start;
       font-weight: 600;
+    }
+    .id{
+      font-size: 8px;
     }
   }
   

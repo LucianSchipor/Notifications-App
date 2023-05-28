@@ -56,16 +56,12 @@ export class AnnouncementService {
 
   replaceAnnouncement(announcement: Announcement) {
     announcement.id = this.searchedAnnouncement[0].id;
-
-    const foundIndex = this.announcement.findIndex(
-      (x) => x.id == announcement.id
-    );
-    this.announcement[foundIndex] = announcement;
-    this.searchedAnnouncement.splice(0);
-    this.subjectAnnouncement.next(this.announcement);
-    this.updateAnnouncement(announcement);
-  }
-  findAnnouncementForDelete(id: string) {
+    announcement.title = this.searchedAnnouncement[0].title;
+    announcement.message = this.searchedAnnouncement[0].message;
+    announcement.author = this.searchedAnnouncement[0].author;
+    announcement.imageURL = this.searchedAnnouncement[0].imageURL;
+    }
+      findAnnouncementForDelete(id: string) {
     this.searchedAnnouncement = this.announcement.filter(
       (announ) => announ.id === id
     );

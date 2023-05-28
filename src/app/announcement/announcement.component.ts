@@ -21,7 +21,8 @@ export class AnnouncementComponent{
   constructor(
     private announcementService: AnnouncementService
   ) // private router: Router
-  {}
+  {
+  }
   
   newAnnouncement: Announcement = {
     title: 'new',
