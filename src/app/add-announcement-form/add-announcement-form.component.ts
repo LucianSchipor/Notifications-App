@@ -1,10 +1,12 @@
 import { Component, Input } from '@angular/core';
-import { Form } from '@angular/forms';
+import { Form, NgForm } from '@angular/forms';
 import { MatFormField } from '@angular/material/form-field';
 import { Announcement } from '../announcement';
 import { CategoriesComponent } from '../categories/categories.component';
 import { category } from '../category';
 import { AnnouncementService } from '../services/announcement.service';
+import { MatSelectChange } from '@angular/material/select';
+import { Route, Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-announcement-form',
@@ -14,56 +16,73 @@ import { AnnouncementService } from '../services/announcement.service';
 
 
 export class AddAnnouncementFormComponent {
-  title: string;
+  title!: string;
   author!: string;
   imageURL!: string;
   textarea!: string;
   selectedCategory!: string;
-
-  announcement: Announcement = {
-    title: ' ',
-    author: ' ',
-    imageURL: ' ',
-    message: ' ',
-    categoryId: ' ',
-    id: ' ',
-  };
+  id!: string;
 
 
-  constructor(private announcementservcie: AnnouncementService){}
+  constructor(private announcementService: AnnouncementService, private router: Router){}
 
-categories: category[] = [
-  {
-    id: '1',
-    name: 'Course',
-  },
-  {
-    id: '2',
-    name: 'General',
-  },
-  {
-    id: '3',
-    name: 'Laboratory',
-  },
-];
-selectedCateg! : category;
+categories: category[] = this.announcementService.categories;
+selectedCateg: category = {id: ' ', name: ' '}
+
 categoriesList! : category[];
 
 
 submitForm() {
-this.announcement.title = this.title;
-this.announcement.message = this.textarea;
-this.announcement.author = this.author;
-this.announcement.imageURL = this.imageURL;
-this.announcement.categoryId = this.selectedCateg.id;
-this.announcementservcie.addAnnouncement(this.announcement);
+  console.log(this.selectedCateg.name + " a fost selectat.");
 
-  console.log('Form submitted:', this.announcement);
+  const announcement: Announcement = {
+    id: 'undefined',
+    title: this.title,
+    message: this.textarea,
+    author: this.author,
+    imageURL: this.imageURL,
+    categoryId: this.selectedCateg.id
+  };
+
+  if(this.title == null){
+  }
+  
+  console.log(announcement);
+  this.announcementService.addAnnouncement(announcement).subscribe(r => {
+    this.router.navigateByUrl("");
+  });
 }
 
-categoryReceived(cat: category){
+onSubmit(form: NgForm) {
+  console.log(form.value);
 
-}
+  const id: string = 'c25de3dd-636d-4c00-9b5a-059ebabd2084';
+  
+
+
+  let announcement: Announcement = {
+    title: this.title,
+    message: this.textarea,
+    author: this.author,
+    categoryId: this.selectedCateg.id,
+    imageURL: this.imageURL,
+    id: id,
+  }
+  
+  console.log(announcement.id);
+
+    this.announcementService.addAnnouncement(announcement).subscribe(r => {
+      this.router.navigateByUrl("");}
+    );
+  }
+
+categoryReceived(event : MatSelectChange){
+  const categoryId = event.value; // Obține ID-ul selectat din evenimentul de selecție
+
+  // Caută obiectul 'category' corespunzător în lista 'categories' în funcție de ID
+  this.selectedCateg = this.categories.find(category => category.id == categoryId);
+  console.log(this.selectedCateg.name);
+  console.log(this.selectedCateg.id);
+
 };
-
-
+}
