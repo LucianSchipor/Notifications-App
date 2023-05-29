@@ -3,6 +3,7 @@ import { Announcement } from '../announcement';
 import { category } from '../category';
 import { AnnouncementService } from '../services/announcement.service';
 import { MatButton } from '@angular/material/button';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-announcement',
@@ -19,7 +20,8 @@ export class AnnouncementComponent{
   
 
   constructor(
-    private announcementService: AnnouncementService
+    private announcementService: AnnouncementService,
+    private router: Router
   ) // private router: Router
   {
 
@@ -48,7 +50,10 @@ export class AnnouncementComponent{
   }
 
   deleteAnnouncement() {
-    this.announcementService.findAnnouncementForDelete(this.id);
+    console.log("Apleat");
+    const annoID : Announcement = this.announcementService.announcements.find((annoID) => annoID.id == this.id)
+    console.log(annoID.id + " trimis.");
+    this.announcementService.deleteAnnouncements(annoID.id).subscribe();
   }
 }
 

@@ -62,6 +62,10 @@ export class AnnouncementService {
   return this.httpClient.get<Announcement[]>(this.baseURL, this.httpOptions);
   }
 
+  deleteAnnouncements(annoID: string) : Observable<Announcement> {
+    return this.httpClient.delete<Announcement>(this.baseURL + '/' + annoID, this.httpOptions);
+    }
+
   addAnnouncement(announcement: Announcement): Observable<Announcement> {
     return this.httpClient.post<Announcement>(this.baseURL, announcement, this.httpOptions)
   }

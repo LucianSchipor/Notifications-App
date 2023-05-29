@@ -55,8 +55,6 @@ onSubmit(form: NgForm) {
   console.log(form.value);
 
   const id: string = 'c25de3dd-636d-4c00-9b5a-059ebabd2084';
-  
-
 
   let announcement: Announcement = {
     title: this.title,
