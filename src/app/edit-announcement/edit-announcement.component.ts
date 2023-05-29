@@ -3,6 +3,7 @@ import { category } from '../category';
 import { AnnouncementService } from '../services/announcement.service';
 import { Announcement } from '../announcement';
 import { CategoriesComponent } from '../categories/categories.component';
+import { Route } from '@angular/router';
 
 @Component({
   selector: 'app-edit-announcement',
@@ -17,7 +18,15 @@ import { CategoriesComponent } from '../categories/categories.component';
     imageURL!: string;
     textarea!: string;
     selectedCategory!: string;
-    announcement!: Announcement;
+    announcement: Announcement = {
+      title: ' ',
+      message: ' ',
+      author: ' ',
+      id: ' ',
+      categoryId: ' ',
+      imageURL: ' ',
+    }
+
     categories: category[] = [
       {
         id: '1',
@@ -34,29 +43,46 @@ import { CategoriesComponent } from '../categories/categories.component';
     ];
   
     constructor(private announcementService: AnnouncementService) {
-
-      this.title = this.announcementService.searchedAnnouncement[0].title;
-      this.author = this.announcementService.searchedAnnouncement[0].author;
-      this.textarea  = this.announcementService.searchedAnnouncement[0].message;
-      this.imageURL = this.announcementService.searchedAnnouncement[0].imageURL;
-    }
+          this.announcement.id = this.announcementService.searchedAnnouncement[0].id;
+          this.announcement.categoryId = this.announcementService.searchedAnnouncement[0].categoryId;
+      
+        }
   
     editAnnouncement() {
-      const announcement: Announcement = {
-        title: this.title,
-        message: this.textarea,
-        author: this.author,
-        imageURL: this.imageURL,
-        id: this.announcementService.searchedAnnouncement[0].id,
-        categoryId: this.announcementService.searchedAnnouncement[0].categoryId,
-      };
 
-      this.announcementService.updateAnnouncement(announcement);     
+      if(this.title != null)
+      {
+        this.announcement.title = this.title;
+      }
+      else{
+        this.announcement.title = this.announcementService.searchedAnnouncement[0].title;
+      }
 
-      console.log(this.announcementService.searchedAnnouncement[0].id + "a fost editat.");
-      console.log(this.announcementService.searchedAnnouncement[0].title + "a fost editat.");
-      console.log(this.announcementService.searchedAnnouncement[0].message + "a fost editat.");
-      console.log(this.announcementService.searchedAnnouncement[0].author + "a fost editat.");
+      if(this.textarea != null)
+      {
+        this.announcement.message = this.textarea;
+      }
+      else{
+        this.announcement.message = this.announcementService.searchedAnnouncement[0].message;
+      }
+
+      if(this.author != null)
+      {
+        this.announcement.author = this.author;
+      }
+      else{
+        this.announcement.author = this.announcementService.searchedAnnouncement[0].author;
+      }
+      if(this.imageURL != null)
+      {
+        this.announcement.imageURL = this.imageURL;
+      }
+      else{
+        this.imageURL = this.announcementService.searchedAnnouncement[0].imageURL
+      }
+      
+
+      this.announcementService.updateAnnouncement(this.announcement);     
     }
   }
   
