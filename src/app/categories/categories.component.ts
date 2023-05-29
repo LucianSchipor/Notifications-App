@@ -3,6 +3,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { category } from '../category';
 import {MatIconModule} from '@angular/material/icon';
 import { MatOptionSelectionChange } from '@angular/material/core';
+import { AnnouncementService } from '../services/announcement.service';
 
 @Component({
   selector: 'app-categories',
@@ -14,12 +15,10 @@ export class CategoriesComponent {
   @Output() selectedCategory = new EventEmitter<category>();
   selectedCategory1: category | undefined;
 
-  categoriesList: category[] = [
-{
-  id: '0',
-  name: 'Course',
-},
 
+  constructor(private as: AnnouncementService){}
+
+  categoriesList: category[] = [
 {
   id: '1',
   name: 'General',
@@ -27,12 +26,22 @@ export class CategoriesComponent {
 
 {
   id: '2',
+  name: 'Course',
+},
+
+{
+  id: '3',
   name: 'Laboratory',
 }
 ];
 
+cat: category = {
+  id: '-1',
+  name: ' ',
+}
+
 selectCategory(index: number) {
-  this.selectedCategory.emit(this.categoriesList[index]);
+    this.selectedCategory.emit(this.categoriesList[index]);
 }
 }
 

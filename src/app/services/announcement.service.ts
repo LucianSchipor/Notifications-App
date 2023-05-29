@@ -19,6 +19,8 @@ export class AnnouncementService {
     })
   };
 
+
+  categorySelected : category;
   subjectAnnouncement: Subject<Announcement[]> = new Subject<Announcement[]>();
   refreshFilteredAnnouncements: Subject<Announcement> =
     new Subject<Announcement>();
@@ -91,18 +93,10 @@ export class AnnouncementService {
 
   }
 
-  updateAnnouncement(announcement: Announcement): void {
-    const url = `${this.baseURL}/Announcement/update-announcement`;
+  updateAnnouncement(announcement: Announcement): Observable<Announcement> {
     console.log("Update anno apelat;");
 
-    this.httpClient.put(url, announcement, this.httpOptions).subscribe(
-      () => {
-        console.log("Anunțul a fost actualizat cu succes.");
-      },
-      (error) => {
-        console.error("Eroare la actualizarea anunțului:", error);
-      }
-    );
+   return this.httpClient.put<Announcement>(this.baseURL, announcement, this.httpOptions);
   }
 }
 

@@ -42,10 +42,17 @@ categorySelected : category = {
   categoryReceived(cat: category) {
     this.announcementService.getAnnouncements().subscribe(
       (announcements: Announcement[]) => {
-        this.filteredAnnouncement = announcements;
-        this.announcementService.announcements = this.filteredAnnouncement;
-        console.log(this.filteredAnnouncement)
+        if(cat.id != '0'){
+          this.filteredAnnouncement = announcements.filter((announ) => announ.categoryId == cat.id);
+          this.announcementService.announcements = this.filteredAnnouncement;
+          console.log(this.filteredAnnouncement);
+        }
+        else{
+          this.filteredAnnouncement.splice(0, length);
+          console.log(this.filteredAnnouncement);
+        }
       },
+
       (error: any) => {
         console.error('A apărut o eroare la obținerea anunțurilor:', error);
       }

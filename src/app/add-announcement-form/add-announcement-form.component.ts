@@ -29,8 +29,6 @@ export class AddAnnouncementFormComponent {
 categories: category[] = this.announcementService.categories;
 selectedCateg: category = {id: ' ', name: ' '}
 
-categoriesList! : category[];
-
 
 submitForm() {
   console.log(this.selectedCateg.name + " a fost selectat.");

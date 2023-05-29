@@ -3,7 +3,8 @@ import { category } from '../category';
 import { AnnouncementService } from '../services/announcement.service';
 import { Announcement } from '../announcement';
 import { CategoriesComponent } from '../categories/categories.component';
-import { Route } from '@angular/router';
+import { Route, Router } from '@angular/router';
+import { MatSelectChange } from '@angular/material/select';
 
 @Component({
   selector: 'app-edit-announcement',
@@ -18,7 +19,9 @@ import { Route } from '@angular/router';
     imageURL!: string;
     textarea!: string;
     selectedCategory!: string;
-    
+    cat: category = {id: '-1', name: 'none'}
+
+
     announcement: Announcement = {
       title: 'undefined',
       message: 'undefined',
@@ -28,10 +31,9 @@ import { Route } from '@angular/router';
       imageURL: ' undefined',
     }
     
-    constructor(public announcementService: AnnouncementService) {
+    constructor(public announcementService: AnnouncementService, private router: Router) {
           this.announcement.id = this.announcementService.searchedAnnouncement[0].id;
           this.announcement.categoryId = this.announcementService.searchedAnnouncement[0].categoryId;
-
         }
   
     editAnnouncement() {
@@ -66,9 +68,21 @@ import { Route } from '@angular/router';
       else{
         this.imageURL = this.announcementService.searchedAnnouncement[0].imageURL
       }
-      
 
-      this.announcementService.updateAnnouncement(this.announcement);     
+      if(this.cat.id != '-1'){
+        this.announcement.categoryId = this.cat.id;
+      }
+
+      this.announcementService.updateAnnouncement(this.announcement).subscribe(r => {
+        this.router.navigateByUrl("");}
+      );
+
     }
+
+    categoryReceived(event : MatSelectChange){
+      const categoryId = event.value;
+      this.cat = this.announcementService.categories.find(category => category.id == categoryId);
+      console.log(this.cat.name);
+    };
   }
   

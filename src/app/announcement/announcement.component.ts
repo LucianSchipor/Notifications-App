@@ -16,14 +16,18 @@ export class AnnouncementComponent{
   @Input() imageURL: string | undefined;
   @Input() categoryId: string | undefined;
   @Input() id: string | undefined;
+  
 
-  category : category | undefined;
   constructor(
     private announcementService: AnnouncementService
   ) // private router: Router
   {
+
   }
+
   
+  categories : category[] = this.announcementService.categories;
+
   newAnnouncement: Announcement = {
     title: 'new',
     message: 'new',
@@ -32,6 +36,7 @@ export class AnnouncementComponent{
     id: '0',
     categoryId: '0',
   };
+
 
    addAnnouncement() {
     console.log('New Announcement:', this.newAnnouncement);
