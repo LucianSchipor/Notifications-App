@@ -25,7 +25,7 @@ import { HttpClientModule } from '@angular/common/http';
     AuthorPipe,
     AddAnnouncementFormComponent,
     HomeComponent,
-    EditAnnouncementComponent
+    EditAnnouncementComponent,
   ],
   imports: [
     BrowserModule,
@@ -37,7 +37,7 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     RouterModule,
     MatInputModule,
-    HttpClientModule
+    HttpClientModule,
   ],
 
   providers: [],

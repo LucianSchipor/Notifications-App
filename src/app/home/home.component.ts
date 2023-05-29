@@ -43,7 +43,7 @@ categorySelected : category = {
     this.announcementService.getAnnouncements().subscribe(
       (announcements: Announcement[]) => {
         this.filteredAnnouncement = announcements;
-        this.announcementService.announcement = this.filteredAnnouncement;
+        this.announcementService.announcements = this.filteredAnnouncement;
         console.log(this.filteredAnnouncement)
       },
       (error: any) => {

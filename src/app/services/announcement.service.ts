@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Announcement } from '../announcement';
-import { Observable, Subject, of } from 'rxjs';
+import { Observable, Subject, catchError, of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { category } from '../category';
 
 
 @Injectable({
@@ -9,10 +10,12 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 
 export class AnnouncementService {
-  baseURL="https://localhost:7066";
+  baseURL: string = "https://localhost:7066/Announcement"  
+
   readonly httpOptions = {
     headers: new HttpHeaders({
       'Content-Type':  'application/json',
+      Authorization: 'my-auth-token'
     })
   };
 
@@ -20,7 +23,7 @@ export class AnnouncementService {
   refreshFilteredAnnouncements: Subject<Announcement> =
     new Subject<Announcement>();
 
-  announcement: Announcement[] = [];
+  announcements: Announcement[] = [];
   searchedAnnouncement: Announcement[] = [
     {
       title: 'new',
@@ -31,7 +34,22 @@ export class AnnouncementService {
       categoryId: '0',
     }
   ];
-  size: number = this.announcement.length;
+
+  categories: category[] = [
+    {
+      name: 'General',
+      id: '1',
+    },
+    {
+      name: 'Course',
+      id: '2',  
+    },
+    {
+        name: 'Laboratory',
+        id: '3',
+    },
+  ];
+  size: number = this.announcements.length;
   constructor(private httpClient: HttpClient) {}
 
   serviceCall() {
@@ -39,26 +57,15 @@ export class AnnouncementService {
   }
   
   getAnnouncements() : Observable<Announcement[]> {
-  const url = `${this.baseURL}/Announcement/get-announcements`;
-  return this.httpClient.get<Announcement[]>(url, this.httpOptions);
+  return this.httpClient.get<Announcement[]>(this.baseURL, this.httpOptions);
   }
 
-  addAnnouncement(announcement: Announcement) {
-    const url = `${this.baseURL}/Announcement/create-announcement`;
-    console.log("Create anno apelat;");
-
-    this.httpClient.post(url, announcement, this.httpOptions).subscribe(
-      () => {
-        console.log("Anunțul a fost adaugat cu succes.");
-      },
-      (error) => {
-        console.error("Eroare la adaugarea anunțului:", error);
-      }
-    );
+  addAnnouncement(announcement: Announcement): Observable<Announcement> {
+    return this.httpClient.post<Announcement>(this.baseURL, announcement, this.httpOptions)
   }
 
   findAnnouncementForEdit(id: string): void {
-    this.searchedAnnouncement = this.announcement.filter(
+    this.searchedAnnouncement = this.announcements.filter(
       (announ) => announ.id == id
     );
   }
@@ -71,16 +78,16 @@ export class AnnouncementService {
     announcement.imageURL = this.searchedAnnouncement[0].imageURL;
     }
       findAnnouncementForDelete(id: string) {
-    this.searchedAnnouncement = this.announcement.filter(
+    this.searchedAnnouncement = this.announcements.filter(
       (announ) => announ.id === id
     );
-    const foundIndex = this.announcement.findIndex(
+    const foundIndex = this.announcements.findIndex(
       (x) => x.id == this.searchedAnnouncement[0].id
     );
     this.searchedAnnouncement.splice(foundIndex, 1);
-    this.refreshFilteredAnnouncements.next(this.announcement[foundIndex]);
-    this.announcement.splice(foundIndex, 1);
-    this.subjectAnnouncement.next(this.announcement);
+    this.refreshFilteredAnnouncements.next(this.announcements[foundIndex]);
+    this.announcements.splice(foundIndex, 1);
+    this.subjectAnnouncement.next(this.announcements);
 
   }
 

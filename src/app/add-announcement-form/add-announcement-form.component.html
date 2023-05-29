@@ -1,5 +1,5 @@
-<form (ngSubmit)="submitForm()" class = "add-form">
-    <mat-form-field class = "example-full-width">
+<form #announcementForm="ngForm" (ngSubmit)="onSubmit(announcementForm)">
+      <mat-form-field class = "example-full-width">
         <mat-label> Title </mat-label>
         <input matInput placeholder="Title" [(ngModel)]="title" name="Title" required> 
     </mat-form-field>
@@ -13,20 +13,20 @@
     </mat-form-field>
     <mat-form-field class = "example-full-width">
         <mat-label> ImageURL </mat-label>
-        <input matInput placeholder="Image-URL" [(ngModel)]="imageURL" name="Image-URL" required> 
+        <input matInput placeholder="imageURL" [(ngModel)]="imageURL" name="Image-URL" required> 
     </mat-form-field>
 
     
     <mat-form-field class="example-full-width" >
         <mat-label>Select a category</mat-label>
-        <mat-select [(ngModel)]="selectedCateg" name="category" >
-          <mat-option *ngFor="let category of categories">
+        <mat-select   [(ngModel)]="selectedCateg" name="category" (selectionChange)="categoryReceived($event)">
+          <mat-option *ngFor="let category of categories"  [value]="category.id">
             {{ category.name }}
           </mat-option>
         </mat-select>
       </mat-form-field>
 
-      <button mat-raised-button color="accent" (click)="submitForm()" type="submit">Submit</button>
-    <button mat-raised-button color="warn" routerLink="/home">Cancel</button>
+      <button mat-raised-button color="accent" type="submit">Submit</button>
 </form>
+<button mat-raised-button color="warn" routerLink="/home">Cancel</button>
 

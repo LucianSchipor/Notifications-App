@@ -37,6 +37,7 @@
       <textarea
         matInput
         placeholder="textarea"
+        [(ngModel)]="textarea"
         name="textarea"
       ></textarea>
     </mat-form-field>
@@ -44,18 +45,21 @@
     <mat-form-field appearance="fill">
       <mat-label>Select a category</mat-label>
       <mat-select [(ngModel)]="selectedCategory" name="category">
-        <mat-option *ngFor="let category of categories">
+        <mat-option *ngFor="let category of announcementService.categories ">
           {{ category.name }}
         </mat-option>
       </mat-select>
     </mat-form-field>
-  
+
+    <div>
+
     <button
-      mat-button
+      mat-raised-button
       color="accent"
       type="submit">Submit
   </button>
+  <button [routerLink]="''" mat-raised-button color="warn">Cancel</button>
+</div>
   </form>
-  <button [routerLink]="''" mat-button color="accent">Cancel</button>
 
   

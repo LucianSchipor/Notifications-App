@@ -18,34 +18,20 @@ import { Route } from '@angular/router';
     imageURL!: string;
     textarea!: string;
     selectedCategory!: string;
+    
     announcement: Announcement = {
-      title: ' ',
-      message: ' ',
-      author: ' ',
-      id: ' ',
-      categoryId: ' ',
-      imageURL: ' ',
+      title: 'undefined',
+      message: 'undefined',
+      author: ' undefined',
+      id: ' undefined',
+      categoryId: ' undefined',
+      imageURL: ' undefined',
     }
-
-    categories: category[] = [
-      {
-        id: '1',
-        name: 'Course',
-      },
-      {
-        id: '2',
-        name: 'General',
-      },
-      {
-        id: '3',
-        name: 'Laboratory',
-      },
-    ];
-  
-    constructor(private announcementService: AnnouncementService) {
+    
+    constructor(public announcementService: AnnouncementService) {
           this.announcement.id = this.announcementService.searchedAnnouncement[0].id;
           this.announcement.categoryId = this.announcementService.searchedAnnouncement[0].categoryId;
-      
+
         }
   
     editAnnouncement() {
